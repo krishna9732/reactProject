@@ -1,0 +1,37 @@
+.contain{
+    background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  width: 300px;
+  text-align: left;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  padding: 15px 15px 35px 150px;
+}
+
+.content-div{
+ margin-top: 10px;
+}
+.form-design label{
+display: block;
+margin-bottom: 7px;
+text-align: left;
+}
+.form-design input{
+    padding: 11px 18px;
+}
+
+.sub{
+    margin-top: 10px;
+    margin-left: 39px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 15px;
+    background: #01d28e;
+    border: 1px solid #01d28e;
+    color: #fff;
+    padding: 10px 20px;
+}
+
+.wr{
+    color: red;
+}
+

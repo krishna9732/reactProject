@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './App';
 import './index.css';
-import Hee from './login';
 import reportWebVitals from './reportWebVitals';
-
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
-  <Hee />,
+  <>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </>,
   document.getElementById('root')
 );
 

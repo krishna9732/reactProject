@@ -7,7 +7,6 @@ import Reset from './resetPass';
 
 function App() {
   return (
-    // <Hee/>
     <Routes>
         <Route exact path="/login" element={<Hee />} />
         <Route exact path="/Home" element={<WelcomeHome />} />

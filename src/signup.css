@@ -1,0 +1,48 @@
+.containRB{
+    background-color: #f4f7e6;
+    margin: 8% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    width: 358px;
+    text-align: left;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    padding: 33px 54px 83px 164px;
+    border-radius: 31px;
+}
+
+.content-divR{
+    margin-top: 10px;
+}
+.form-designR label{
+    margin-top: 30px;
+    display: block;
+    margin-bottom: 7px;
+    text-align: left;
+}
+.ABCR{
+    padding: 11px 18px;
+}
+
+.regR{
+    padding: 19px 30px 16px 174px;
+}
+
+.linkR{
+    padding-left: 15px;
+}
+
+.subR{
+    border-radius: 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    background: #87c4ec;
+    border: 1px solid #50a3f0;
+    color: #fff;
+    font-weight: bold;
+    padding: 12px 83px;
+    text-shadow: #f4f7e6;
+}
+
+.wr{
+    color: red;
+}
+

@@ -1,17 +1,20 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import WelcomeHome from './home';
 import './login.css';
 
 function Hee() {
+    const navigate = useNavigate()
     const loginData= {
         username:'krishna',
         pass:'1234'
     }
 
-    const handleSubmit = (event) =>{
+    const HandleSubmit = (event) =>{
         event.preventDefault();
         if(loginData.username === event.target[0].value && loginData.pass === event.target[1].value){
-            console.log('Welcome '+event.target[0].value);
-            <Link to="/Home">About</Link>
+            console.log('Welcome '+ event.target[0].value);
+            WelcomeHome.pageData = event.target[0].value;
+            navigate('/Home');
 
         }else{
             console.log('Wrong password');
@@ -22,19 +25,19 @@ function Hee() {
     const pageName = "Login Page"
 
     const loginForm = (<div className='contain'>
-    <h1>{pageName}</h1>
-    <form className='form-design' onSubmit={handleSubmit}>
+    <h1 >{pageName}</h1>
+    <form className='form-design' onSubmit={HandleSubmit}>
         <div>
             <label>User name : </label>
-            <input type="text" name="name"/>
+            <input className='ABC' type="text" name="name"/>
         </div>
 
         <div className='content-div'>
             <label>Password : </label>
-            <input type="password" name= "pass" />
+            <input className='ABC' type="password" name= "pass" />
         </div>
         
-        <div className='content-div'>
+        <div className='content-div '>
             <input className='sub' type="submit"/>
         </div>
         <div  className='reg'>

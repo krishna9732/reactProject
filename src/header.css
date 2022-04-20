@@ -4,10 +4,14 @@
   padding: 20px 10px;
 }
 .header {
-    overflow: hidden;
-    background-color: #f1f1f1;
-    padding: 9px 10px;
-  }
+  overflow: hidden;
+  background-color: #f1f1f1;
+  padding: 9px 10px;
+  position: absolute;
+  top: 0;
+  width: calc(100vw - 20px);
+  z-index: 99999;
+}
   
   .header a {
     float: left;

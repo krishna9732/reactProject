@@ -2,3 +2,10 @@
     height: 60vh !important;
 }
 
+.oh-yeah {
+    display: flex;
+    position: absolute;
+    top: 67px;
+    height: calc(100vh - 67px);
+    width: 100vw;
+}

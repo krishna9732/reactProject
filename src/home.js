@@ -4,7 +4,7 @@ import 'react-pro-sidebar/dist/css/styles.css';
 import { Link } from "react-router-dom";
 import Header from "./header";
 import Footer from "./footer";
-import Dash from "./dashboard";
+// import Dash from "./dashboard";
 import ProductDetails from "./product";
 
 

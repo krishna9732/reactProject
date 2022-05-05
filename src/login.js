@@ -24,7 +24,8 @@ function Hee() {
     }
     const pageName = "Login Page"
 
-    const loginForm = (<div className='contain'>
+    const loginForm = (<div className='main'>
+    <div className='contain'>
     <h1 >{pageName}</h1>
     <form className='form-design' onSubmit={HandleSubmit}>
         <div>
@@ -45,7 +46,7 @@ function Hee() {
             <Link className='link' to="/reset-password">Forgot your password?</Link>
         </div>
     </form>
-</div>)
+</div></div>)
 
     return loginForm
 }

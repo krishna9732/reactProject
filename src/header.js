@@ -11,7 +11,7 @@ function Header(){
         <div class="header-right">
             <a href="home">Home</a>
             <a href="contact">Contact</a>
-            <a href="logout" onClick={logout}>Logout</a>
+            <a href="login" onClick={logout}>Logout</a>
         </div>
     </div>
 }

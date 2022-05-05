@@ -6,7 +6,7 @@ function Footer(){
 <div class="row primary">
   <div class="column about">
 
-  <h3>Foolish Developer</h3>
+  <h3> Developer</h3>
 
    <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae,
@@ -83,7 +83,7 @@ function Footer(){
   <a href="Social">Social</a>
 
   </div>
-   <p>Copyright &copy; 2021 Foolish Developer</p>
+   <p>Copyright &copy; 2021  Developer</p>
 </div>
 </footer>
     );

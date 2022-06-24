@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import './signup.css';
 
 function Register(){
-    const pageName = "Create Account";
+    const pageName = "Create Student Account";
 
     const HandleSubmit = (event) =>{
         event.preventDefault();

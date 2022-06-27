@@ -6,9 +6,9 @@ function Header(){
     const logout = () =>{
         navigate('/login')
     }
-    return <div class="header">
-        <a href="#default" class="logo">CompanyLogo</a>
-        <div class="header-right">
+    return <div className="header">
+        <a href="#default" className="logo">CompanyLogo</a>
+        <div className="header-right">
             <a href="home">Home</a>
             <a href="contact">Contact</a>
             <a href="login" onClick={logout}>Logout</a>

@@ -1,164 +1,55 @@
-import './product.css';
-import React from "react";
-import ReactFormValidation from "react-form-input-validation";
+import { useState } from "react"
+import React from 'react'
 
-class ProductDetails extends React.Component{
-            constructor(props) {
-                super(props);
-                this.state = {
-                fields: {
-                    cc_name: "",
-                    cc_no: "",
-                    ccv: "",
-                    phone_number: "",
-                    expdate: ""
-                },
-                errors: {}
-                };
-                this.form = new ReactFormValidation(this, { locale: "en" });
-                this.form.useRules({
-                cc_name: "required|username_available|min:8|max:16",
-                cc_no: "required|numeric|min:16|max:16",
-                ccv: "required|numeric|digits_between:3,4",
-                phone_number: "required|numeric|digits_between:10,12",
-                expdate: "required|numeric|/"
-                });
-            
-                this.form.onformsubmit = (fields) => {
-                console.log(fields);
-                };
-            
-                ReactFormValidation.registerAsync("username_available", function (
-                username,
-                attribute,
-                req,
-                passes
-                ) {
-                setTimeout(() => {
-                    if (username === "foo")
-                    passes(false, "Username has already been taken.");
-                    // if username is not available
-                    else passes();
-                }, 1000);
-                });
-            }
-    
+function Product() {
+  const [firstName, setUserName] = useState('');
+  const [lastName, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [contact, setContact] = useState('');
 
 
+  const firstNameChange = event => {
+    setUserName(event.target.value);
+  };
+
+  const lastNameChange = event => {
+    setPassword(event.target.value);
+  }
+
+  const emailChange = event => {
+    setEmail(event.target.value);
+  };
+
+  const contactChange = event => {
+    setContact(event.target.value);
+  }
 
 
+  const onSubmit = event => {
+    event.preventDefault();
+    console.log("form has been submitted: ");
+    console.log(firstName+" - " +lastName + ' - ' + email + ' - ' + contact);
+  };
 
-
-
-
-
-
-
-
-
-
-
-
-            
-      render() {
-        return (
-          <div style={{ maxWidth: "600px", margin: "0 auto" }}>
-            <h2>Registration Form</h2>
-            <form
-              className="myForm"
-              noValidate
-              autoComplete="off"
-              onSubmit={this.form.handleSubmit}
-            >
-              <label>Credit Card Username:</label>
-              <input
-                type="text"
-                name="cc_name"
-                placeholder="CC username"
-                onBlur={this.form.handleBlurEvent}
-                onChange={this.form.handleChangeEvent}
-                value={this.state.fields.cc_name}
-                data-attribute-name="cc username"
-                data-async
-              />
-              <label className="error">
-                {this.state.errors.cc_name ? this.state.errors.cc_name : ""}
-              </label>
-    
-              <label>Credit Card Number:</label>
-              <input
-                type="text"
-                name="cc_no"
-                placeholder="CC number"
-                onBlur={this.form.handleBlurEvent}
-                onChange={this.form.handleChangeEvent}
-                value={this.state.fields.cc_no}
-                data-attribute-name="cc number"
-                data-async
-              />
-              <label className="error">
-                {this.state.errors.cc_no ? this.state.errors.cc_no : ""}
-              </label>
-    
-              <label>Credit Card Verification:</label>
-              <input
-                type="text"
-                name="ccv"
-                placeholder="CCV"
-                onBlur={this.form.handleBlurEvent}
-                onChange={this.form.handleChangeEvent}
-                value={this.state.fields.ccv}
-                data-attribute-name="CC verify number"
-                data-async
-              />
-              <label className="error">
-                {this.state.errors.ccv ? this.state.errors.ccv : ""}
-              </label>
-    
-              <label>Expiration Date:</label>
-              <input
-                type="text"
-                name="expdate"
-                placeholder="mm/yy"
-                onBlur={this.form.handleBlurEvent}
-                onChange={this.form.handleChangeEvent}
-                value={this.state.fields.expdate}
-                data-attribute-name="Expiration Date"
-                data-async
-              />
-              <label className="error">
-                {this.state.errors.expdate ? this.state.errors.expdate : ""}
-              </label>
-    
-              <p>
-                <label>
-                  Country:
-                  <select
-                    id="country"
-                    name="country"
-                    value={this.state.fields.country}
-                    onChange={this.form.handleChangeEvent}
-                    onBlur={this.form.handleBlurEvent}
-                    data-attribute-name="Country"
-                    data-async
-                  >
-                    <option value="">Select one</option>
-                    <option value="pak">West Bengal</option>
-                    <option value="kor">Goa</option>
-                    <option value="tur">Gujrat</option>
-                  </select>
-                </label>
-                <label className="error">
-                  {this.state.errors.country ? this.state.errors.country : ""}
-                </label>
-              </p>
-              <br />
-              <button type="submit">Back</button>
-              <button type="submit">Register</button>
-            </form>
-          </div>
-        );
-      }
+  return (
+    <div>
+     <form onSubmit={onSubmit}>  
+          <label for="fname">FirstName: </label>
+          <input id="fname" type="text" value={firstName} onChange={firstNameChange} />
+          <br/><br/>
+          <label for="lname">LastName: </label>
+          <input id="lname" type="text" value={lastName} onChange={lastNameChange} />
+          <br/><br/>
+          <label for="email">Email: </label>
+          <input id="email" type="email" value={email} onChange={emailChange} />
+          <br/><br/>
+          <label for="contact">Contact: </label>
+          <input id="contact" type="text" value={contact} onChange={contactChange} />
+          <br/><br/>
+          <button type="submit"> Submit </button>
+        </form>
+    </div>
+  )
 }
 
-export default ProductDetails;
+export default Product

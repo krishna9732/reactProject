@@ -35,7 +35,7 @@ function WelcomeHome() {
                     </ProSidebar>
                     <ProductDetails />
                 </div>
-                < Footer />
+                {/* < Footer /> */}
             </div>
 
         </>

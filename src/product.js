@@ -119,16 +119,9 @@ function Product() {
           </div>
 
       <div className="absolute">
-        <h1>Table List</h1>
+        <h1 style={{padding:'10px'}}>Table List</h1>
         <div style={{padding: '20px'}}>
-          <button
-            onClick={getUserList}
-            disabled={isLoading}
-          >
-            {isLoading ? "Loading..." : "Get User List"}
-          </button>
-
-          <div>
+                   <div>
           <table className="customers">
           <thead className="thead-dark">
             <th>Index</th>

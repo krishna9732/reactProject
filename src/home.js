@@ -1,7 +1,7 @@
 import { Menu, MenuItem, ProSidebar, SidebarHeader, SubMenu } from "react-pro-sidebar";
 import './home.css';
 import 'react-pro-sidebar/dist/css/styles.css';
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import Header from "./header";
 import Footer from "./footer";
 // import Dash from "./dashboard";
@@ -22,9 +22,9 @@ function WelcomeHome() {
                             {pageData}
                         </SidebarHeader>
                         <Menu iconShape="square">
-                            <MenuItem>Dashboard <Link to="/Dashboard" /></MenuItem>
+                            <MenuItem>Dashboard <Link to="/home/Dashboard" /></MenuItem>
                             <SubMenu title="Components">
-                                <MenuItem>Component 1</MenuItem>
+                                <MenuItem>Product Details  <Link to="/home/product" /> </MenuItem>
                                 <MenuItem>Component 2</MenuItem>
                             </SubMenu>
                             <SubMenu title="Reports">
@@ -33,7 +33,7 @@ function WelcomeHome() {
                             </SubMenu>
                         </Menu>
                     </ProSidebar>
-                    <ProductDetails />
+                    <Outlet />
                 </div>
                 {/* < Footer /> */}
             </div>

@@ -12,14 +12,17 @@ function App() {
     <>
       
       <Routes>
-        <Route exact path="/login" element={<Hee />} />
-        <Route exact path="/Home" element={<WelcomeHome />} />
-        <Route exact path="/Dashboard" element={<Dash />} />
-        <Route exact path="/productPage" element={<ProductDetails />} />
-        <Route exact path="/register" element={<Register />} />
-        <Route exact path="/reset-password" element={<Reset />} />
+      <Route path="/">
+        <Route exact path="login" element={<Hee />} />
+        <Route exact path="home" element={<WelcomeHome />} >
+          <Route exact path="dashboard" element={<Dash />} />
+          <Route exact path="product" element={<ProductDetails />} />
+        </Route>
+        <Route exact path="register" element={<Register />} />
+        <Route exact path="reset-password" element={<Reset />} />
 
         <Route path="/" element={<Navigate replace to="/login" />} />
+      </Route>
       </Routes>
     </>
   );

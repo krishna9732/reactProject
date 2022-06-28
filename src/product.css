@@ -1,4 +1,4 @@
-.container {
+.proDe {
   position: relative;
   padding-left: 20px;
   padding-right: 23px;
@@ -8,13 +8,10 @@
   
 .absolute {
     position: relative;
-    /* padding-left: 20px;
-    padding-right: 53px; */
     top: 0px;
     right: 0;
     left: 735px;
     width: 700px;
-    border: 2px solid rgb(225, 206, 243);
   }
 
 

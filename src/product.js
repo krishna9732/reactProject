@@ -3,6 +3,7 @@ import React from 'react';
 import './product.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { api } from "./serviceCall/app";
 
 function Product() {
   const [userName, setUserName] = useState('');
@@ -46,14 +47,19 @@ function Product() {
       "phone":contact,
       "address":userAddress
     }
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(reqData)
-  };
+  //   const requestOptions = {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify(reqData)
+  // };
+
+  const option = {
+    headers: { 'Content-Type': 'application/json' },
+  }
+  const data =JSON.stringify(reqData);
     try {
-      let apiData = await fetch("http://localhost:3001/students",requestOptions);
-      let res = await apiData.json();
+      let apiData = await api.post("http://localhost:3002/students",data,option);
+      let res = await apiData.data;
       console.log(res);
       toast.success(res.message);
       getUserList();
@@ -70,9 +76,9 @@ function Product() {
   const getUserList= async event => {
     try {
       setLoader(true)
-      let apiData = await fetch("http://localhost:3001/students");
+      let apiData = await api.get("http://localhost:3002/students");
       setLoader(false);
-      let res = await apiData.json();
+      let res = await apiData.data;
       setUserList(res );
        
     } catch (error) {
@@ -98,8 +104,8 @@ function Product() {
         draggable
         pauseOnHover
       />
-    <div style={{border:'2px solid rebeccapurple'}}>
-          <div className="container">
+    <div >
+          <div className="proDe">
                 <h1>Save Employee</h1>
                 <form onSubmit={onSubmit}>  
                   <label for="fname">Name: </label>
@@ -129,6 +135,7 @@ function Product() {
             <th>Email</th>
             <th>Phone</th>
             <th>Address</th>
+            <th>Action</th>
           </thead>
           {isLoading ? <div className="mainDiv"><div class="lds-facebook"><div></div><div></div><div></div></div></div>  : <tbody >
             {userList.map((x,i) => (
@@ -137,9 +144,8 @@ function Product() {
                 <td>{x.name}</td>
                 <td>{x.email}</td>
                 <td>{x.phone}</td>
-                <td>
-                {x.address}
-                </td>
+                <td>{x.address}</td>
+                <td style={{    cursor: 'pointer'}}>Edit</td>
               </tr>
             ))}
             {userList.length === 0 && (

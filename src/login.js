@@ -14,7 +14,7 @@ function Hee() {
         if(loginData.username === event.target[0].value && loginData.pass === event.target[1].value){
             console.log('Welcome '+ event.target[0].value);
             WelcomeHome.pageData = event.target[0].value;
-            navigate('/Home');
+            navigate('/home/product');
 
         }else{
             console.log('Wrong password');

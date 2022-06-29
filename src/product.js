@@ -12,6 +12,8 @@ function Product() {
   const [contact, setContact] = useState('');
   const [isLoading,setLoader] = useState('');
   const [isSubmit,setSubmit] = useState('');
+  const [id,setId] = useState('');
+  const [isEdit,setEdit] = useState(false);
 
   const [userList, setUserList] = useState([]);
 
@@ -36,9 +38,30 @@ function Product() {
   const onSubmit = event => {
     setSubmit(true);
     event.preventDefault();
-    
-    saveData()
+    // {
+      isEdit ? editData() : saveData()
+    // }
   };
+  const editData = async event =>{
+    const reqData = {
+      "name":userName,
+      "email":email,
+      "phone":contact,
+      "address":userAddress
+    }
+    const data =JSON.stringify(reqData);
+    let apiData = await api.patch('students/'+id,data);
+    let res = await apiData.data;
+    console.log(res);
+      toast.success(res.message);
+      getUserList();
+      setSubmit(false);
+      setUserName('');
+      setEmail('');
+      setAddress('');
+      setContact('');
+      setEdit(false);
+  }
   
   const saveData = async event =>{
     const reqData = {
@@ -47,18 +70,9 @@ function Product() {
       "phone":contact,
       "address":userAddress
     }
-  //   const requestOptions = {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify(reqData)
-  // };
-
-  const option = {
-    headers: { 'Content-Type': 'application/json' },
-  }
   const data =JSON.stringify(reqData);
     try {
-      let apiData = await api.post("http://localhost:3002/students",data,option);
+      let apiData = await api.post('students',data);
       let res = await apiData.data;
       console.log(res);
       toast.success(res.message);
@@ -72,11 +86,23 @@ function Product() {
       console.log(error);
     }
   }
+  const deleteData = async event =>{
+      try {
+        let apiData  = await api.delete('students/'+id);
+        let res = await apiData.data;
+        toast.info(res.message);
+        getUserList();
+      } catch (error) {
+        console.log(error);
+      }
+  }
+
+
 
   const getUserList= async event => {
     try {
       setLoader(true)
-      let apiData = await api.get("http://localhost:3002/students");
+      let apiData = await api.get("students");
       setLoader(false);
       let res = await apiData.data;
       setUserList(res );
@@ -106,7 +132,8 @@ function Product() {
       />
     <div >
           <div className="proDe">
-                <h1>Save Employee</h1>
+                {isEdit ? <h1>Edit Employee</h1> :<h1>Save Employee</h1>}
+                
                 <form onSubmit={onSubmit}>  
                   <label for="fname">Name: </label>
                   <input id="fname" type="text" value={userName} onChange={userNameChange} />
@@ -120,7 +147,9 @@ function Product() {
                   <label for="lname">userAddress: </label>
                   <input id="lname" type="text" value={userAddress} onChange={userAddressChange} />
                   <br/><br/>
-                  <button type="submit" disabled={isSubmit}> {isSubmit ? "Loading..." : "Submit"} </button>
+                  {
+                  isEdit ? <button type="submit" disabled={isSubmit}> {isSubmit ? "Loading..." : "Edit data"} </button> : <button type="submit" disabled={isSubmit}> {isSubmit ? "Loading..." : "Submit"} </button>  
+                }
                 </form>
           </div>
 
@@ -136,6 +165,7 @@ function Product() {
             <th>Phone</th>
             <th>Address</th>
             <th>Action</th>
+            <th></th>
           </thead>
           {isLoading ? <div className="mainDiv"><div class="lds-facebook"><div></div><div></div><div></div></div></div>  : <tbody >
             {userList.map((x,i) => (
@@ -145,7 +175,18 @@ function Product() {
                 <td>{x.email}</td>
                 <td>{x.phone}</td>
                 <td>{x.address}</td>
-                <td style={{    cursor: 'pointer'}}>Edit</td>
+                <td style={{    cursor: 'pointer'}} onClick={()=>{
+                    setUserName(x.name);
+                    setAddress(x.address);
+                    setEmail(x.email);
+                    setContact(x.phone);
+                    setEdit(true);
+                    setId(x._id)
+                }}>Edit</td>
+                <td style={{    cursor: 'pointer'}} onClick={()=>{
+                    setId(x._id);
+                    deleteData();
+                }}>Delete</td>
               </tr>
             ))}
             {userList.length === 0 && (

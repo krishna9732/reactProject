@@ -12,17 +12,17 @@ function App() {
     <>
       
       <Routes>
+        <Route exact path="/" element={<Hee />} />
         <Route exact path="login" element={<Hee />} />
+
         <Route exact path="register" element={<Register />} />
         <Route exact path="reset-password" element={<Reset />} />
-      <Route path="/">
-        <Route exact path="home" element={<WelcomeHome />} >
-          <Route exact path="dashboard" element={<Dash />} />
-          <Route exact path="product" element={<ProductDetails />} />
+        <Route path="/">
+          <Route exact path="home" element={<WelcomeHome />} >
+            <Route exact path="dashboard" element={<Dash />} />
+            <Route exact path="product" element={<ProductDetails />} />
+          </Route>
         </Route>
-
-      </Route>
-        <Route path="/" element={<Navigate replace to="/login" />} />
       </Routes>
     </>
   );

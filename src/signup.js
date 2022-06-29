@@ -16,8 +16,8 @@ function Register(){
     }
 
     const signUpForm = (<div className='containRB'>
-    <h1 >{pageName}</h1>
     <form className='form-designR' onSubmit={HandleSubmit}>
+        <h1 >{pageName}</h1>
         <div>
             <label>Full Name : </label>
             <input className='ABCR' type="text" name="name"/>

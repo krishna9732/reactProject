@@ -7,8 +7,8 @@ function Reset(){
     }
     
     const resetPass=(<div className="containF">
-        <h1>Reset Password</h1>
                 <form className='form-design' onSubmit={HandleSubmit}>
+                <h1>Reset Password</h1>
                 <div>
                     <label>Old Password: </label>
                     <input className='ABC' type="text" name="name"/>

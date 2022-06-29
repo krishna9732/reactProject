@@ -26,8 +26,8 @@ function Hee() {
 
     const loginForm = (<div className='main'>
     <div className='contain'>
-    <h1 >{pageName}</h1>
     <form className='form-design' onSubmit={HandleSubmit}>
+        <h1 >{pageName}</h1>
         <div>
             <label>User name : </label>
             <input className='ABC' type="text" name="name"/>

@@ -2,10 +2,11 @@ import axios from "axios";
 
 
 const instance = axios.create({
-    baseURL: process.env.REACT_APP_BASE_URL,
+    baseURL: 'http://localhost:3002/',
     headers: {
         "Content-Type": "application/json",
     },
 });
-
+instance.interceptors.request.use(
+);
 export { instance as api };

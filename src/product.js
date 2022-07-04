@@ -4,6 +4,8 @@ import './product.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { api } from "./serviceCall/app";
+import yesno from "yesno-dialog";
+
 
 function Product() {
   const [userName, setUserName] = useState('');
@@ -52,7 +54,6 @@ function Product() {
     const data =JSON.stringify(reqData);
     let apiData = await api.patch('students/'+id,data);
     let res = await apiData.data;
-    console.log(res);
       toast.success(res.message);
       getUserList();
       setSubmit(false);
@@ -86,7 +87,23 @@ function Product() {
       console.log(error);
     }
   }
+
+  const cancelData = ()=>{
+      setSubmit(false);
+      setUserName('');
+      setEmail('');
+      setAddress('');
+      setContact('');
+  }
+
+
   const deleteData = async event =>{
+    const yes = await yesno({
+      labelYes: "Yes",
+      labelNo: "No",
+      bodyText: "Are you sure! you want to delete this record?"
+    });
+    if (yes) {
       try {
         let apiData  = await api.delete('students/'+id);
         let res = await apiData.data;
@@ -95,6 +112,7 @@ function Product() {
       } catch (error) {
         console.log(error);
       }
+    }
   }
 
 
@@ -134,21 +152,24 @@ function Product() {
           <div className="proDe">
                 {isEdit ? <h1>Edit Employee</h1> :<h1>Save Employee</h1>}
                 
-                <form onSubmit={onSubmit}>  
-                  <label for="fname">Name: </label>
+                <form >  
+                  <label >Name: </label>
                   <input id="fname" type="text" value={userName} onChange={userNameChange} />
                   <br/><br/>
-                  <label for="email">Email: </label>
+                  <label>Email: </label>
                   <input id="email" type="email" value={email} onChange={emailChange} />
                   <br/><br/>
-                  <label for="contact">phone: </label>
+                  <label>phone: </label>
                   <input id="contact" type="text" value={contact} onChange={contactChange} />
                   <br/><br/>
-                  <label for="lname">userAddress: </label>
+                  <label>userAddress: </label>
                   <input id="lname" type="text" value={userAddress} onChange={userAddressChange} />
                   <br/><br/>
                   {
-                  isEdit ? <button type="submit" disabled={isSubmit}> {isSubmit ? "Loading..." : "Edit data"} </button> : <button type="submit" disabled={isSubmit}> {isSubmit ? "Loading..." : "Submit"} </button>  
+                  isEdit ? <button type="submit" style={{width:"50%"}} disabled={isSubmit} onClick={onSubmit}> {isSubmit ? "Loading..." : "Edit data"} </button> : <button type="submit"  onClick={onSubmit} disabled={isSubmit}> {isSubmit ? "Loading..." : "Submit"} </button>  
+                }
+                {
+                  isEdit ?<button type="submit"  style={{width:"47%",marginLeft:'10px'}} onClick={cancelData}>cancel</button>:null
                 }
                 </form>
           </div>
@@ -157,24 +178,27 @@ function Product() {
         <h1 style={{padding:'10px'}}>Table List</h1>
         <div style={{padding: '20px'}}>
                    <div>
+        {isLoading ? (<div className="mainDiv"><div className="lds-facebook"><div></div><div></div><div></div></div></div>)  :
           <table className="customers">
           <thead className="thead-dark">
-            <th>Index</th>
-            <th>User Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Address</th>
-            <th>Action</th>
-            <th></th>
+            <tr>
+              <th>Index</th>
+              <th>User Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Address</th>
+              <th>Action</th>
+              <th></th>
+            </tr>
           </thead>
-          {isLoading ? <div className="mainDiv"><div class="lds-facebook"><div></div><div></div><div></div></div></div>  : <tbody >
+           <tbody >
             {userList.map((x,i) => (
-              <tr>
-                <td>{i + 1}</td>
-                <td>{x.name}</td>
-                <td>{x.email}</td>
-                <td>{x.phone}</td>
-                <td>{x.address}</td>
+              <tr key={i}>
+                <td key={i + 1}>{i + 1}</td>
+                <td key={x.name}>{x.name}</td>
+                <td key={x.email}>{x.email}</td>
+                <td key={x.phone}>{x.phone}</td>
+                <td key={x.address}>{x.address}</td>
                 <td style={{    cursor: 'pointer'}} onClick={()=>{
                     setUserName(x.name);
                     setAddress(x.address);
@@ -196,9 +220,10 @@ function Product() {
                 </td>
               </tr>
             )}
-          </tbody>}
+          </tbody>
           
         </table>
+          }
           </div>
         </div>
       </div>

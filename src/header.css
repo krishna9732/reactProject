@@ -10,7 +10,7 @@
   position: absolute;
   top: 0;
   width: calc(100vw - 20px);
-  z-index: 99999;
+  z-index: 11;
 }
   
   .header a {

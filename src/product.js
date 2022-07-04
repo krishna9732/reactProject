@@ -187,8 +187,7 @@ function Product() {
               <th>Email</th>
               <th>Phone</th>
               <th>Address</th>
-              <th>Action</th>
-              <th></th>
+              <th style={{textAlign:'center'}}>Action</th>
             </tr>
           </thead>
            <tbody >
@@ -199,7 +198,24 @@ function Product() {
                 <td key={x.email}>{x.email}</td>
                 <td key={x.phone}>{x.phone}</td>
                 <td key={x.address}>{x.address}</td>
-                <td style={{    cursor: 'pointer'}} onClick={()=>{
+                <td>
+                  <span
+                    style={{    cursor: 'pointer'}} onClick={()=>{
+                      setUserName(x.name);
+                      setAddress(x.address);
+                      setEmail(x.email);
+                      setContact(x.phone);
+                      setEdit(true);
+                      setId(x._id)
+                  }}>Edit
+                  </span>
+                  <span style={{ cursor: 'pointer',marginLeft:'10px'}} onClick={()=>{
+                    setId(x._id);
+                    deleteData();
+                }}>Delete
+                  </span>
+                </td>
+                {/* <td style={{    cursor: 'pointer'}} onClick={()=>{
                     setUserName(x.name);
                     setAddress(x.address);
                     setEmail(x.email);
@@ -210,7 +226,7 @@ function Product() {
                 <td style={{    cursor: 'pointer'}} onClick={()=>{
                     setId(x._id);
                     deleteData();
-                }}>Delete</td>
+                }}>Delete</td> */}
               </tr>
             ))}
             {userList.length === 0 && (

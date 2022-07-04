@@ -13,6 +13,9 @@
     left: 735px;
     width: 700px;
   }
+  .jsyesnodialog {
+    --color: #e91e63;
+  }
 
 
   .customers {

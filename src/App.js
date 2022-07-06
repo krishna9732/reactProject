@@ -1,11 +1,12 @@
 import './App.css';
 import Hee from './login';
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import WelcomeHome from './home';
 import Register from './signup';
 import Reset from './resetPass';
 import Dash from './dashboard';
 import ProductDetails from './product';
+import Listing from './listingPage';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route exact path="home" element={<WelcomeHome />} >
             <Route exact path="dashboard" element={<Dash />} />
             <Route exact path="product" element={<ProductDetails />} />
+            <Route exact path="listing" element={<Listing />} />
           </Route>
         </Route>
       </Routes>

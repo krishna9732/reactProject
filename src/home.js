@@ -3,9 +3,6 @@ import './home.css';
 import 'react-pro-sidebar/dist/css/styles.css';
 import { Link, Outlet } from "react-router-dom";
 import Header from "./header";
-import Footer from "./footer";
-// import Dash from "./dashboard";
-import ProductDetails from "./product";
 
 
 
@@ -24,8 +21,8 @@ function WelcomeHome() {
                         <Menu iconShape="square">
                             <MenuItem>Dashboard <Link to="/home/Dashboard" /></MenuItem>
                             <SubMenu title="Components">
-                                <MenuItem>Product Details  <Link to="/home/product" /> </MenuItem>
-                                <MenuItem>Component 2</MenuItem>
+                                <MenuItem aria-expanded>Product Details  <Link to="/home/product" /> </MenuItem>
+                                <MenuItem>Listing page <Link to="/home/listing" /></MenuItem>
                             </SubMenu>
                             <SubMenu title="Reports">
                                 <MenuItem>My Report</MenuItem>
